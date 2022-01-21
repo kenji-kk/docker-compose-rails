@@ -8,5 +8,5 @@ docker-composeを使用し、Ruby,Rails,MySQL,Nginxの環境を構築した。
 4. `docker-compose exec app rails webpacker:install`
 5. `docker-compose exec app rails webpacker:compile`
 
-##確認URL
+## 確認URL
 - http://localhost
