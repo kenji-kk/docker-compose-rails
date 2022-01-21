@@ -16,18 +16,18 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs
 
 # ルート直下にwebappという名前で作業ディレクトリを作成（コンテナ内のアプリケーションディレクトリ）
-RUN mkdir /webapp
-WORKDIR /webapp
+RUN mkdir /rails_app
+WORKDIR /rails_app
 
 # ホストのGemfileとGemfile.lockをコンテナにコピー
-ADD Gemfile /webapp/Gemfile
-ADD Gemfile.lock /webapp/Gemfile.lock
+ADD Gemfile /rails_app/Gemfile
+ADD Gemfile.lock /rails_app/Gemfile.lock
 
 # bundle installの実行
 RUN bundle install
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
-ADD . /webapp
+ADD . /rails_app
 
 # puma.sockを配置するディレクトリを作成
 RUN mkdir -p tmp/sockets

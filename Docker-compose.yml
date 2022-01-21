@@ -2,15 +2,15 @@ version: '3'
 services:
   app:
     build:
-      context: .
+      context: ./rails
     env_file:
       - ./environments/db.env
     command: bundle exec puma -C config/puma.rb
     volumes:
-      - .:/webapp
-      - public-data:/webapp/public
-      - tmp-data:/webapp/tmp
-      - log-data:/webapp/log
+      - ./rails:/rails_app
+      - public-data:/rails_app/public
+      - tmp-data:/rails_app/tmp
+      - log-data:/rails_app/log
     depends_on:
       - db
   db:
@@ -23,8 +23,8 @@ services:
     build:
       context: containers/nginx
     volumes:
-      - public-data:/webapp/public
-      - tmp-data:/webapp/tmp
+      - public-data:/rails_app/public
+      - tmp-data:/rails_app/tmp
     ports:
       - 80:80
     depends_on:
